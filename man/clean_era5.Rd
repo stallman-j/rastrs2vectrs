@@ -26,7 +26,7 @@ clean_era5(
 
 \item{output_filename}{the name to give the cleaned ERA5 raster. NULL defaults to:
  paste0(input_filename,".rds")
- @return just puts the correctly rotated and subsetted raster into the output_path folder
+ @returns just puts the correctly rotated and subsetted raster into the output_path folder
  @examples
    clean_era5(input_path      = file.path(data_external_raw,"ERA_5"),
 input_filename  = "example_era5",

@@ -4,7 +4,7 @@ Code including examples for extracting Copernicus's ERA5 raster data to vector d
 
 Steps:
 
-1)  Download the package to your local machine with `devtools::install_github("stallman-j/rastrs2vectrs")` 
+1)  Download this package to your local machine with `devtools::install_github("stallman-j/rastrs2vectrs")` 
 2)  Open `rastrs2vectrs/code/00_startup.R`
 
 Change the following file paths to your machine's:
