@@ -4,8 +4,8 @@ Code including examples for extracting Copernicus's ERA5 raster data to vector d
 
 Steps:
 
-1)  Copy the repository era5-extraction to your local machine
-2)  Open `era5-extraction/code/00_startup.R`
+1)  Download the package to your local machine with `devtools::install_github("stallman-j/rastrs2vectrs")` 
+2)  Open `rastrs2vectrs/code/00_startup.R`
 
 Change the following file paths to your machine's:
 
@@ -39,19 +39,17 @@ Save this file with "File name" as ".cdsapirc" and "Save as Type" to "All Files"
 
 <https://confluence.ecmwf.int/display/CKB/How+to+install+and+use+CDS+API+on+Windows> (from <https://confluence.ecmwf.int/pages/viewpage.action?pageId=139068264> )
 
-c)  go into Copernicus and decide what information you actually want. I often just want the monthly mean precipitation which you can access below:
+c)  go into Copernicus and decide what information you want. For example if you want the monthly mean precipitation, use the link below. If you want annual precipitation, hold your horses, we'll get to that. It's not available just for download.
 
 <https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels-monthly-means?tab=form>
 
-Choose NETCdf since that's easier to bring into R with metadata. At the bottom click "Show API request" and copy that code
+Choose NETCdf since that's easier to bring into R with metadata. At the bottom click "Show API request". Copy that code.
 
-d)  paste this API request code into a .py file. Alternatively you can paste it into a .txt file which is saved as e.g. "import_era5_precip.py" and in files "All File Types". Save this into the folder which is your `code_download` folder (set in step 2).
-
-if using more than one variable, rename the 'download.nc' to make clearer which name it is. The one I use for precipitation throughout is `total_precipitation.nc`. I'm sure you could do rename this through R (to do).
+d)  paste this API request code into a .py file. Alternatively you can paste it into a .txt file which is saved as e.g. "example_cdsapi.py" and in files "All File Types". Save this into the folder which is your `code_download` folder (set in step 2, implicitly after setting `home_folder`).
 
 There are other ways you could get this download, e.g. following the below. <https://confluence.ecmwf.int/display/CUSF/Download+CDS+ERA5+data+using+R>
 
-4)  Open `era5-extraction/code/01_download-datasets.R` and run the script. This will download 
+4)  Open `rastrs2vectrs/code/01_download-datasets.R` and run the script (after you've changed `home_folder` again at the top). This will download 
 a) the entire GADM global administrative boundaries dataset
 b) the ERA5 reanalysis precipitation data from Copernicus
 c) a free set of cities from SimpleMaps 

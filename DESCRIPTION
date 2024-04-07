@@ -7,5 +7,5 @@ Description: This package (Work in Progress) is building out a full workflow for
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-Imports: dplyr, ggplot2, stringr, tictoc, parallel, terra, sf, exactextractr, pacman, reticulate
+Imports: dplyr, ggplot2, stringr, tictoc, parallel, terra, sf, exactextractr, pacman, reticulate, rvest, httr, lubridate, tmap
 RoxygenNote: 7.2.3

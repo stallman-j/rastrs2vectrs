@@ -25,8 +25,15 @@ clean_era5(
 \item{output_path}{the file path to put your cleaned data. Creates it if it doesn't already exist, e.g. file.path("E:","Projects","data","03_clean","ERA_5")}
 
 \item{output_filename}{the name to give the cleaned ERA5 raster. NULL defaults to:
-paste0(input_filename,".rds")
-@return just puts the correctly rotated and subsetted raster into the output_path folder}
+ paste0(input_filename,".rds")
+ @return just puts the correctly rotated and subsetted raster into the output_path folder
+ @examples
+   clean_era5(input_path      = file.path(data_external_raw,"ERA_5"),
+input_filename  = "example_era5",
+input_filetype  = "nc",
+keep_substrings = c("skt"),
+output_path     = file.path(data_external_clean,"ERA_5"),
+output_filename = paste0("example_era5.rds"))}
 }
 \description{
 takes as data a raster file (ideally taken from Copernicus ERA5),
