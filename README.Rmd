@@ -1,4 +1,4 @@
-# era5-extraction
+# rastrs2vectrs
 
 Code including examples for extracting Copernicus's ERA5 raster data to vector data
 
