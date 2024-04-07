@@ -10,6 +10,7 @@
 #' @param output_path the file path to put your cleaned data. Creates it if it doesn't already exist, e.g. file.path("E:","Projects","data","03_clean","ERA_5")
 #' @param output_filename the name to give the cleaned ERA5 raster. NULL defaults to:
 #'  paste0(input_filename,".rds")
+#' @export
 #'
 clean_era5 <- function(input_path,
                        input_filename = "example_era5",
