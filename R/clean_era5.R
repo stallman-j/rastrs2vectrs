@@ -1,5 +1,3 @@
-## EXPERIMENTAL: hasn't been fully tested
-
 #' \code{clean_era5} takes as data a raster file (ideally taken from Copernicus ERA5),
 #' selects a particular variable to analyze and subsets the rasters according to
 #' this variable, and rotates the rasters so they can be extracted to more typical polygon data
@@ -11,7 +9,7 @@
 #' @param output_path the file path to put your cleaned data. Creates it if it doesn't already exist, e.g. file.path("E:","Projects","data","03_clean","ERA_5")
 #' @param output_filename the name to give the cleaned ERA5 raster. NULL defaults to:
 #'  paste0(input_filename,".rds")
-#' 
+#'
 clean_era5 <- function(input_path,
                        input_filename = "example_era5",
                        input_filetype = "nc",
@@ -19,7 +17,7 @@ clean_era5 <- function(input_path,
                        output_path,
                        output_filename = NULL
                        ){
-    
+
     if (!require("pacman")) install.packages("pacman")
     pacman::p_load(
       stringr, # for string operatioons
@@ -28,34 +26,34 @@ clean_era5 <- function(input_path,
       tictoc,
       lubridate # date operations
     )
-    
+
     # create output folder if it doesn't exist already
     if (!dir.exists(output_path)) dir.create(output_path, recursive = TRUE) # recursive lets you create any needed subdirectories
-    
+
     # TO DO: examine if I can get this function without needing to drop spherical geometry
     sf_use_s2(FALSE)
-    
+
     in_file <- paste0(input_filename,".",input_filetype)
-    
+
     era <- terra::rast(x = file.path(input_path, in_file))
-    
+
     all_names <- names(era)
-    
+
     keep_substr_new <- paste(keep_substrings, collapse = "|" )
 
   keep_names <- stringr::str_detect(all_names, keep_substr_new)
 
-  era_5 <- terra::subset(era, subset = keep_names) 
+  era_5 <- terra::subset(era, subset = keep_names)
 
 
 # what is the CRS?
 
 # https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation#ERA5:datadocumentation-Spatialreferencesystems
-# ERA5 data is referenced in the horizontal with respect to the WGS84 ellipse (which defines the major/minor axes) 
-# and in the vertical it is referenced to the EGM96 geoid over land but over ocean it is referenced to 
+# ERA5 data is referenced in the horizontal with respect to the WGS84 ellipse (which defines the major/minor axes)
+# and in the vertical it is referenced to the EGM96 geoid over land but over ocean it is referenced to
 # mean sea level, with the approximation that this is assumed to be coincident with the geoid
 
-crs(era_5) <- "epsg:4326" 
+crs(era_5) <- "epsg:4326"
 
 # rotate so that instead of 0 to 360 the longitude is going from -180 to 180
 
@@ -64,15 +62,15 @@ crs(era_5) <- "epsg:4326"
 
 
   if (is.null(output_filename)) {
-    
+
   saveRDS(era_5,
           file = file.path(output_path,paste0(input_filename,".rds")))
 
   } else {
-    
+
     saveRDS(era_5,
             file = file.path(output_path,output_filename))
   }
-  
-  
+
+
   }
