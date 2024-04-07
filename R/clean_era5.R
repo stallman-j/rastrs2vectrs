@@ -1,4 +1,5 @@
-#' \code{clean_era5} takes as data a raster file (ideally taken from Copernicus ERA5),
+#' Clean ERA5 Rasters
+#' @description takes as data a raster file (ideally taken from Copernicus ERA5),
 #' selects a particular variable to analyze and subsets the rasters according to
 #' this variable, and rotates the rasters so they can be extracted to more typical polygon data
 #' @author jillianstallman
