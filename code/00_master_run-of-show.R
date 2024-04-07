@@ -21,8 +21,8 @@
 # _______________________________#
 
 # 01 download
-  
-  download_datasets                                  <-    1
+
+  download_datasets                                  <-    0
 
 # 02 cleaning
 
@@ -47,7 +47,7 @@
 # _______________________________#
 
 ## 01 download ----
-  
+
   if (download_datasets==1){
     source(file.path(code_download,"01_download-datasets.R"))
   }
@@ -57,21 +57,21 @@
   if (clean_era5==1){
     source(file.path(code_clean,"02_clean_era5.R"))
   }
-  
+
   if (clean_polygons==1){
     source(file.path(code_clean,"02_clean_polygons.R"))
   }
-  
+
   if (clean_points==1){
     source(file.path(code_clean,"02_clean_points.R"))
   }
-  
+
   if (merge_era5_extract_to_points==1){
     source(file.path(code_clean,"02_merge_era5-extract-to-points.R"))
   }
-  
+
   if (merge_era5_extract_to_polygons==1){
     source(file.path(code_clean,"02_merge_era5-extract-to-polygons.R"))
   }
-  
-  
+
+

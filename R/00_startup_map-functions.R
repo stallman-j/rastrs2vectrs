@@ -1,4 +1,5 @@
-# Map functions ----
+#' Set default theme for maps
+#' @export
 
 
 theme_map <- function(legend_text_size = 8,
@@ -21,15 +22,15 @@ theme_map <- function(legend_text_size = 8,
       #axis.ticks.x = element_blank(),
       axis.title.x = axis_title_x,
       axis.title.y = axis_title_y,
-      
+
       # Background Panels
       # panel.grid.minor = element_line(color = "#ebebe5", linewidth = 0.2),
       panel.grid.major = element_blank(), #element_line(color = "#ebebe5", linewidth = 0.2),
       panel.grid.minor = element_blank(),
-      plot.background = element_rect(fill = "white", color = NA), 
-      panel.background = element_rect(fill = "white", color = NA), 
+      plot.background = element_rect(fill = "white", color = NA),
+      panel.background = element_rect(fill = "white", color = NA),
       panel.border = element_blank(),
-      #plot.caption = element_blank(), 
+      #plot.caption = element_blank(),
       #element_text(face = "italic", linewidth = 6,
       #lineheight = 0.4),
       # Legends
@@ -42,9 +43,10 @@ theme_map <- function(legend_text_size = 8,
       plot.margin = unit(c(0,0,0,0), "mm"), # T R BL
       ...
     )
-  # if the points on the legend are way too big 
+  # if the points on the legend are way too big
 }
 
+#' set theme for maps when we have gifs
 
 theme_map_gif <- function(legend_text_size = 17,
                           legend_title_size = 20) {
@@ -60,8 +62,8 @@ theme_map_gif <- function(legend_text_size = 17,
       # panel.grid.minor = element_line(color = "#ebebe5", linewidth = 0.2),
       panel.grid.major = element_line(color = "#ebebe5", linewidth = 0.2),
       panel.grid.minor = element_blank(),
-      plot.background = element_rect(fill = "white", color = NA), 
-      panel.background = element_rect(fill = "white", color = NA), 
+      plot.background = element_rect(fill = "white", color = NA),
+      panel.background = element_rect(fill = "white", color = NA),
       panel.border = element_blank(),
       plot.caption = element_text(face = "italic", linewidth = 15,
                                   lineheight = 0.4),
@@ -72,25 +74,26 @@ theme_map_gif <- function(legend_text_size = 17,
       legend.text = element_text(linewidth = legend_text_size),
       legend.title = element_text(linewidth = legend_title_size),
       plot.margin = unit(c(0,0,0,0), "mm"), # T R BL
-      
+
       ...
     )
 }
 
 
 
-# save the map
+#' save the map
+#' @export
 save_map <- function(output_folder = output_maps,
                      plotname,
                      filename,
                      width = 9,
                      height = 5,
                      dpi    = 300)  {
-  
+
   # create the output folder if it doesn't exist already
   if (!dir.exists(output_folder)) dir.create(output_folder, recursive = TRUE) # recursive lets you create any needed subdirectories
-  
-  
+
+
   ggsave(filename = file.path(output_folder,filename),
          plot = plotname,
          device = png,
@@ -113,10 +116,10 @@ save_map <- function(output_folder = output_maps,
 #' @param title a character vec with the desired title
 #' @param subtitle character vec if subtitle desired
 #' @param caption if you want a caption
-map_plot     <- function(countries, 
-                         sf, 
-                         title, 
-                         subtitle = "", 
+map_plot     <- function(countries,
+                         sf,
+                         title,
+                         subtitle = "",
                          caption = "",
                          left = -170,
                          right = 170,
@@ -139,7 +142,7 @@ map_plot     <- function(countries,
     coord_sf(xlim = c(left,right),
              ylim = c(bottom, top)) +
     theme_map()
-  
+
   return(plot)
 }
 
