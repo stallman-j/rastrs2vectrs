@@ -1,0 +1,11 @@
+Package: rastrs2vectrs
+Type: Package
+Title: Rasters to Vectors (for Economists)
+Version: 0.1.0
+Authors@R: person("Jillian","Stallman",email = "jillian.stallman@yale.edu", role = c("aut","cre"))
+Description: This package (Work in Progress) is building out a full workflow for downloading some of the most common rasters used by economists (ERA5 weather reanalysis; satellite lights from NOAA; NDVI from NASA), rotating them as necessary, and then extracting them to vectors (currently polygons or points).
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports: dplyr, ggplot2, stringr, tictoc, parallel, terra, sf, exactextractr, pacman
+RoxygenNote: 7.2.3
