@@ -57,7 +57,7 @@ c) a free set of cities from SimpleMaps
 into the `data_external_raw` path which was set in step 2)
 
 
-5) Open `02_clean_era5.R`
+5) Open `code/02_cleaning/02_clean_era5.R` and again change the `home_folder` to your own
 
 If you're NOT using total precipitation and you didn't follow my naming conventions in step 3), you'll most likely just want to follow this to see what the clean_era5 function is doing and then set up a script with the clean_era5 function.
 
@@ -65,16 +65,20 @@ The precipitation data NCDF format downloads both a real-time estimate and a rea
 
 If you just want the monthly average precipitation and you followed step 3) with my suggested setup, just run the script. 
 
-You can comment out the plots at the end if you already get the point of doing rotations, but if the idea of rotating rasters isn't clear to you take a look at those plots so you can see why we so commonly need to manipulate climate rasters to make it sensible to project onto points or polygons.
+You can comment out the plots at the end if you already get the point of doing rotations, but if the idea of rotating rasters isn't clear to you, you might find it useful to look at those plots to see what's going on.
 
 
-6) Open `02_clean_polygons.R`
+6) Open `code/02_cleaning/02_clean_polygons.R`
 
 This assumes you want to generate .rds files of ALL the GADM global administrative boundaries at ALL levels (level 1 being the state-province, level 2 being like the prefecture; level 3 like a county; and on down to level 6 which is missing for many countries)
 
 If this assumption is correct and you're happy having a nice handy global shapefile dataset, just run this as-is. But it'll take a little while (to-do: how long to run?)
 
-7) Open `02_clean_points.R`
+7) Open `code/02_cleaning/02_clean_polygons.R`
+
+This cleans a bunch of cities around the world so that we can have examples of rasters extracting to points
+
+This file also shows an example of using the `parallel::parLapply()` function with `sf::st_intersection()` to speed up spatial calculations.
 
 
 TO DO:
