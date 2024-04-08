@@ -6,16 +6,21 @@
 \usage{
 collapse_panel_to_annual(
   in_df,
+  rolling_average_years = c(3, 5, 11),
   date_varname = "date",
   value_varname_old = "precip_mean",
   value_varname_new = "precip",
-  rolling_average_years = c(3, 5, 11),
   id_varname = "vector_cast_id",
-  out_path = getwd(),
-  out_filename = "annualized_df.rds"
+  out_path = NULL,
+  out_filename = NULL,
+  merge_df = NULL
 )
 }
 \arguments{
+\item{in_df}{the panel data frame which we want to be annual}
+
+\item{rolling_average_years}{numeric vector, values containing the length in years for which you'd like rolling averages. currently only accepts exactly a length three vector (TO DO: make it so this function accepts any number of years options for rolling averages)}
+
 \item{date_varname}{the variable name (as a character) that dates are stored as; needs to include year and month and be readable with as.Date()}
 
 \item{value_varname_old}{the current name of the values you're using for the values column}
@@ -24,17 +29,17 @@ collapse_panel_to_annual(
 
 \item{id_varname}{the observation ID. default is "vector_cast_id" because that's what raster_extract_to_long_df outputs as the id, the observation ID}
 
-\item{out_path}{the file.path() to where you would like to save the annual df. Gets created if it doesn't already exist. Defaults to working directory}
+\item{out_path}{the file.path() to where you would like to save the annual df. Gets created if it doesn't already exist. Defaults to NULL in which case the outputted df is not saved anywhere}
 
-\item{out_filename}{The name you would like the long annual panel to be saved as. defaults to "annualized_df.rds"}
+\item{out_filename}{The name you would like the long annual panel to be saved as. default of NULL means that the annual df won't get saved}
 
-\item{panel_df}{the panel data frame which is currently monthly and we want to be annual}
+\item{merge_df}{if you'd like to merge on another DF to this annual panel, input here the df. This will do left_join(annual_temp_df,merge_df). Default NULL which is do not merge any other DFs on here. Assumes you're just merging by the id_varname which is present in both or something equally obvious that dplyr can recognize}
 }
 \value{
 an annualized df with 3 annual rolling averages
 }
 \description{
-from a data frame that is higher-than-annual frequency, collapses to annual with rolling averages at 3, 5 and 11 years
+from a data frame that is higher-than-annual frequency, collapses to annual with 3 options for rolling averages
 }
 \examples{
 collapse_panel_to_annual(in_df = out_df, value_varname_old = "precip_mean",  value_varname_new = "precip",  id_varname = "vector_cast_id", out_path = file.path(data_external_clean,"merged","DHS_ERA5","annual"),  out_filename = "africa_dhs_gps_era5_annual.rds")

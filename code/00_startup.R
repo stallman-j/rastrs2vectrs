@@ -12,6 +12,9 @@ options(timeout = max(1000, getOption("timeout")))
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(
   ggplot2, # pretty plots
+  tictoc,
+  sf,
+  terra,
   tidyverse # every data wrangling thing
 )
 

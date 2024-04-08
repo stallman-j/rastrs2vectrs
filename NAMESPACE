@@ -2,6 +2,7 @@
 
 export(chunk_it)
 export(clean_era5)
+export(create_long_run_vars)
 export(download_era5)
 export(download_single_file)
 export(get_parallel_splits)
