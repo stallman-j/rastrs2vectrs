@@ -27,13 +27,13 @@ current_continent   <- "Africa"
 time_range          <- c("1960-01-01","2018-12-31")
 
 # directories ----
-home_folder <- file.path("P:","Projects","git","era5-extraction")
+home_folder <- file.path("P:","Projects","rastrs2vectrs")
 setwd(home_folder)
 
 # Code Paths
 
-  code_startup_general          <- file.path(home_folder,"code","00_startup-general")
-  code_startup_project_specific <- file.path(home_folder,"code","00_startup-era5-extraction-specific")
+  code_startup_general          <- file.path(home_folder,"code","00_startup")
+  code_startup_project_specific <- file.path(home_folder,"code","00_startup")
 
   code_folder                   <- file.path(home_folder,"code")
   code_download                 <- file.path(code_folder,"01_download")
@@ -103,9 +103,9 @@ if (Sys.info()[["nodename"]]=="my-machines-name" ){
   startup_parallel_functions_general                       <-    0
 
 # 00 startup era5extractr functions: none of the following are currently filled in
-  startup_era5_extraction_download_functions                  <-    0
-  startup_era_5_extraction_cleaning_functions                  <-    0
-  startup_era5_extraction_analysis_functions                  <-    0
+  startup_rastrs_2_vectrs_download_functions                  <-    0
+  startup_rastrs_2_vectrs_cleaning_functions                  <-    0
+  startup_rastrs_2_vectrs_analysis_functions                  <-    0
   startup_parameters                                       <-    0
 
 
@@ -157,15 +157,15 @@ if (Sys.info()[["nodename"]]=="my-machines-name" ){
 
 ## 00 startup, get functions for my specific project ----
 
-  if(startup_era5_extraction_download_functions==1){
+  if(startup_rastrs_2_vectrs_download_functions==1){
     source(file.path(code_startup_project_specific,"00_startup_era5-extraction-download-functions.R"))
   }
 
-  if(startup_era_5_extraction_cleaning_functions==1){
+  if(startup_rastrs_2_vectrs_cleaning_functions==1){
     source(file.path(code_startup_project_specific,"00_startup_era5-extraction-cleaning-functions.R"))
   }
 
-  if(startup_era5_extraction_analysis_functions==1){
+  if(startup_rastrs_2_vectrs_analysis_functions==1){
     source(file.path(code_startup_project_specific,"00_startup_era5-extraction-analysis-functions.R"))
   }
 
@@ -184,9 +184,9 @@ rm(startup_create_folders_general,
    startup_analysis_functions_general,
    startup_palette_general,
    startup_parallel_functions_general,
-   startup_era5_extraction_download_functions,
-   startup_era_5_extraction_cleaning_functions,
-   startup_era5_extraction_analysis_functions,
+   startup_rastrs_2_vectrs_download_functions,
+   startup_rastrs_2_vectrs_cleaning_functions,
+   startup_rastrs_2_vectrs_analysis_functions,
    startup_parameters
 )
 

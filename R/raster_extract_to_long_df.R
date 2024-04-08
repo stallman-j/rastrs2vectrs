@@ -113,12 +113,10 @@ raster_extract_to_long_df <- function(terra_raster,
     }
   }
 
-
   # make sure raster extent is correct ----
 
   # ext() gives the extent of the raster as provided by the layers, not the crs() function
-
-  # rotating takes a very long time
+  # rotating takes a very long time for a whole lot of layers
   # this says if xmin for terra_raster is 0, and xmin for vector_sf is -180, then we need to rotate
 
   if (base::round(ext(terra_raster))[1] == 0 & base::round(ext(vector_sf))[1]==-180 ) {

@@ -29,14 +29,6 @@ clean_era5 <- function(input_path,
                        output_filename = NULL
                        ){
 
-    if (!require("pacman")) install.packages("pacman")
-    pacman::p_load(
-      stringr, # for string operatioons
-      terra, # handle raster data
-      tidyverse, # data wrangling
-      tictoc,
-      lubridate # date operations
-    )
 
     # create output folder if it doesn't exist already
     if (!dir.exists(output_path)) dir.create(output_path, recursive = TRUE) # recursive lets you create any needed subdirectories

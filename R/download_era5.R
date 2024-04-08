@@ -17,30 +17,25 @@ download_era5 <- function(raw_data_path,
                           new_era5_filename = NULL
                           ) {
 
-  if (!require("pacman")) install.packages("pacman")
-  pacman::p_load(
-    reticulate
-  )
-
 #create new environment
 # install latest python version
 reticulate::install_python()
 
-virtualenv_create("r-reticulate") # create a virtual environment
-virtualenv_install("r-reticulate", packages = "cdsapi") # install the CDS API package into this virtual environment
+reticulate::virtualenv_create("r-reticulate") # create a virtual environment
+reticulate::virtualenv_install("r-reticulate", packages = "cdsapi") # install the CDS API package into this virtual environment
 
 # create a folder to download the data into
 path <- file.path(raw_data_path,"ERA_5")
 if (!file.exists(path)) dir.create(path, recursive = TRUE)
 
-os <- import("os")
+os <- reticulate::import("os")
 os$getcwd() # get current directory
 os$chdir(path) # change current directory (so that a file downloaded will go there)
 
 
 py_path <- file.path(code_download_path,cdsapi_filename)
 
-py_run_file(py_path)
+reticulate::py_run_file(py_path)
 
 
 if (!is.null(new_era5_filename)){

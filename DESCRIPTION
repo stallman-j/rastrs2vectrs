@@ -7,5 +7,6 @@ Description: This package is building out a full workflow for downloading some o
 License: What license is it under? (To do: whichever creative commons makes more sense)
 Encoding: UTF-8
 LazyData: true
-Imports: dplyr, ggplot2, stringr, tictoc, parallel, terra, sf, exactextractr, pacman, reticulate, rvest, httr, lubridate, tmap, zoo
+Imports: dplyr, ggplot2, tidyverse, stringr, tictoc, parallel, terra, sf, exactextractr, countrycode,
+pacman, reticulate, rvest, httr, lubridate, tmap, zoo
 RoxygenNote: 7.2.3

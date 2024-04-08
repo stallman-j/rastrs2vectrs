@@ -70,6 +70,10 @@ reticulate::install_python()
                 cdsapi_filename = "example_cdsapi.py",
                 new_era5_filename = "example_era5.nc")
 
+  download_era5(raw_data_path = data_external_raw,
+                code_download_path = code_download,
+                cdsapi_filename = "total_precipitation_cdsapi.py",
+                new_era5_filename = "total_precipitation.nc")
 # # GADM Country Shapefiles ----
 
 # lots and lots of data, takes quite some time to run. You could also select
