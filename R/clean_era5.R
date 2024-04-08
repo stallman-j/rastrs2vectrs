@@ -9,7 +9,7 @@
 #' @param keep_substrings a character vector of the substrings which define which layers you would like to keep
 #' @param output_path the file path to put your cleaned data. Creates it if it doesn't already exist, e.g. file.path("E:","Projects","data","03_clean","ERA_5")
 #' @param output_filename the name to give the cleaned ERA5 raster. NULL defaults to:
-#'  paste0(input_filename,".rds")
+#'  paste0(input_filename,".tif"); note this uses terra::writeRaster, not saveRDS
 #'  @return just puts the correctly rotated and subsetted raster into the output_path folder
 #' @export
 #' @examples
@@ -18,7 +18,7 @@
 #' input_filetype  = "nc",
 #' keep_substrings = c("skt"),
 #' output_path     = file.path(data_external_clean,"ERA_5"),
-#' output_filename = paste0("example_era5.rds"))
+#' output_filename = paste0("example_era5.tif"))
 #'
 #'
 clean_era5 <- function(input_path,
@@ -74,12 +74,12 @@ crs(era_5) <- "epsg:4326"
 
   if (is.null(output_filename)) {
 
-  saveRDS(era_5,
-          file = file.path(output_path,paste0(input_filename,".rds")))
+  terra::writeRaster(era_5,
+          file = file.path(output_path,paste0(input_filename,".tif")))
 
   } else {
 
-    saveRDS(era_5,
+    terra::writeRaster(era_5,
             file = file.path(output_path,output_filename))
   }
 

@@ -1,21 +1,18 @@
 #' Break up a thing into chunks of a certain size n
-#' break up into chunks of size n
+#' @param x a vector or list, things you want to split up
+#' @param n number of chunks
+#' @examples chunk_urls <- chunk_it(my_URLS,
+#'                        n = ceiling(length(my_URLS)/22000))
+#' missing_urls <- rep(NA, length(my_URLS))
+#'
+#' missing_url_chunks <- chunk_it(missing_urls,
+#'                                n = ceiling(length(my_URLS)/22000))
 #' @export
 chunk_it <- function(x,n) split(x, cut(seq_along(x),
                                        breaks = n,
                                        labels = FALSE))
 
-# Examples
-# chunk_urls <- chunk_it(my_URLS,
-#                        n = ceiling(length(my_URLS)/22000))
-#
-#
-# missing_urls <- rep(NA, length(my_URLS))
-#
-# missing_url_chunks <- chunk_it(missing_urls,
-#                                n = ceiling(length(my_URLS)/22000))
-
-#' Save RDS and CSV ----
+#' Save RDS and CSV and Excel files
 #' @description
 #' Given data, saves an output in RDS and CSV
 #' @param data the data frame
@@ -23,9 +20,9 @@ chunk_it <- function(x,n) split(x, cut(seq_along(x),
 #' @param date in character the dates relevant to the filename, will be put at the front of the filename
 #' @param output_filename character, in RDS the filename output, assumes it ends in ".rds" and starts with "_" e.g. "_gkg_events.rds" so if date = "2016"
 #' then the file would be called "2016_gkg_events.rds"
-#' @param csv_vars vector of character strings with the varnames of the variables that will be saved in the CSV file
+#' @param csv_vars vector of character strings with the varnames of the variables that will be saved in the CSV file. Defaults "all"
 #' @param remove defaults to TRUE in which case the data are removed after being saved, if FALSE returns the data to memory
-#' @param format defaults to "both" which is both csv and xlsx. Otherwise can use "csv" or "xlsx" for output format
+#' @param format Save to "csv" or "xlsx" or "rds". Default "all" is all 3 of the above.
 #' @export
 save_rds_csv <- function(data,
                          output_path,
@@ -33,7 +30,7 @@ save_rds_csv <- function(data,
                          output_filename,
                          remove = TRUE,
                          csv_vars = c("all"),
-                         format   = "both"){
+                         format   = "all"){
 
 
   if (!dir.exists(output_path)) dir.create(output_path, recursive = TRUE) # recursive lets you create any needed subdirectories
@@ -53,7 +50,7 @@ save_rds_csv <- function(data,
   }
 
 
-  if (format == "both"){
+  if (format == "all"){
     if (!require("readr")) install.packages("readr")
     library(readr)
     readr::write_csv(csv_data,
@@ -78,7 +75,7 @@ save_rds_csv <- function(data,
 
     writexl::write_xlsx(csv_data,
                         path = xlsx_path)
-  } else if (format == "neither"){
+  } else if (format == "rds"){
     print("Not saving to CSV or XLSX, just saved RDS file.")
   }
 

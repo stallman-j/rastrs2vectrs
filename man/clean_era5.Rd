@@ -25,20 +25,23 @@ clean_era5(
 \item{output_path}{the file path to put your cleaned data. Creates it if it doesn't already exist, e.g. file.path("E:","Projects","data","03_clean","ERA_5")}
 
 \item{output_filename}{the name to give the cleaned ERA5 raster. NULL defaults to:
- paste0(input_filename,".rds")
- @returns just puts the correctly rotated and subsetted raster into the output_path folder
- @examples
-   clean_era5(input_path      = file.path(data_external_raw,"ERA_5"),
-input_filename  = "example_era5",
-input_filetype  = "nc",
-keep_substrings = c("skt"),
-output_path     = file.path(data_external_clean,"ERA_5"),
-output_filename = paste0("example_era5.rds"))}
+paste0(input_filename,".tif"); note this uses terra::writeRaster, not saveRDS
+@return just puts the correctly rotated and subsetted raster into the output_path folder}
 }
 \description{
 takes as data a raster file (ideally taken from Copernicus ERA5),
 selects a particular variable to analyze and subsets the rasters according to
 this variable, and rotates the rasters so they can be extracted to more typical polygon data
+}
+\examples{
+clean_era5(input_path      = file.path(data_external_raw,"ERA_5"),
+input_filename  = "example_era5",
+input_filetype  = "nc",
+keep_substrings = c("skt"),
+output_path     = file.path(data_external_clean,"ERA_5"),
+output_filename = paste0("example_era5.tif"))
+
+
 }
 \author{
 jillianstallman

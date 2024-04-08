@@ -54,7 +54,7 @@ pacman::p_load(
   keep_substrings  <- c("sp","tp") # there are multiple layer types in the example raster; this selects just the skt and tp
 
   output_path    <- file.path(data_external_clean,"ERA_5")
-  output_filename <- "example_era5_output.rds"
+  output_filename <- "example_era5_clean.rds"
 
 
 # here's what the function will do, but with some additional exploration
@@ -254,9 +254,9 @@ data(World)
   clean_era5(input_path      = file.path(data_external_raw,"ERA_5"),
              input_filename  = "example_era5",
              input_filetype  = "nc",
-             keep_substrings = c("skt"),
+             keep_substrings = c("sp"),
              output_path     = file.path(data_external_clean,"ERA_5"),
-             output_filename = paste0("example_era5.rds"))
+             output_filename = paste0("example_era5_clean.rds"))
 
   toc()
 
