@@ -49,31 +49,34 @@ reticulate::install_python()
   os$getcwd() # get current directory
   os$chdir(path) # change current directory (so that a file downloaded will go there)
 
-# import_era5_precip
-# import_era5_surface_temperature
-
-  py_path <- file.path(code_download,"import_era5_precip.py")
-
-  py_run_file(py_path)
-
-  py_path <- file.path(code_download,"import_era5_precip.py")
+  # the monthly annual vals for total precipitation is about 4G, might get a little big
+  #
+  py_path <- file.path(code_download,"total_precipitation_cdsapi.py")
 
   py_run_file(py_path)
+
+    file.rename(to = file.path(raw_data_path,"ERA_5","total_precipitation.nc"),
+                from = file.path(raw_data_path,"ERA_5","download.nc")
+    )
+
 
 # also can use the function
 
   # NOTE: this will NOT work unless you've done the configurations to get the CDS API onto your computer
   # See the README file for how to do this
-
+  # easy example
   download_era5(raw_data_path = data_external_raw,
                 code_download_path = code_download,
                 cdsapi_filename = "example_cdsapi.py",
                 new_era5_filename = "example_era5.nc")
 
+  # total precipitation, monthly from 1940 to present. This is about 4G, latest try on 2024-04-08 took 39 mins
+
   download_era5(raw_data_path = data_external_raw,
                 code_download_path = code_download,
                 cdsapi_filename = "total_precipitation_cdsapi.py",
                 new_era5_filename = "total_precipitation.nc")
+
 # # GADM Country Shapefiles ----
 
 # lots and lots of data, takes quite some time to run. You could also select

@@ -1,5 +1,5 @@
 # _______________________________#
-# era5extractr
+# rastrs2vectrs
 # 02 Merge: Extract ERA5 data to points
 #
 # Stallman
